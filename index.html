@@ -6,57 +6,59 @@
   <body>
     <a-scene>
       <!-- Lantai -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
-      
-      <!-- Dinding -->
-      <a-box position="0 2 -5" width="10" height="4" depth="0.1" color="#D3D3D3"></a-box>
-      <a-box position="5 2 0" width="0.1" height="4" depth="10" color="#D3D3D3"></a-box>
-      <a-box position="-5 2 0" width="0.1" height="4" depth="10" color="#D3D3D3"></a-box>
+      <a-plane position="0 0 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
 
-      <!-- Meja dan Kursi -->
-      <a-box position="-3 0.5 -2" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
-      <a-box position="3 0.5 -2" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
-      <a-box position="-3 0.5 -4" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
-      <a-box position="3 0.5 -4" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
+      <!-- Dinding Belakang -->
+      <a-box position="0 2 -10" width="20" height="4" depth="0.1" color="#D3D3D3"></a-box>
 
-      <!-- Kursi -->
-      <a-box position="-3.5 0.25 -2.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
-      <a-box position="-2.5 0.25 -2.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
-      <a-box position="2.5 0.25 -2.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
-      <a-box position="3.5 0.25 -2.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
-      <a-box position="-3.5 0.25 -4.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
-      <a-box position="-2.5 0.25 -4.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
-      <a-box position="2.5 0.25 -4.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
-      <a-box position="3.5 0.25 -4.5" width="0.5" height="0.5" depth="0.5" color="#654321"></a-box>
+      <!-- Objek Kompleks via URL -->
+      <a-entity 
+        gltf-model="https://cdn.aframe.io/test-models/models/glTF/Duck/glTF/Duck.gltf" 
+        position="-4 0 -6" 
+        scale="0.5 0.5 0.5"
+        animation="property: rotation; to: 0 360 0; loop: true; dur: 6000">
+      </a-entity>
 
-      <!-- Papan Tulis -->
-      <a-box position="0 2 -4.8" width="3" height="1.5" depth="0.1" color="#000"></a-box>
+      <a-entity 
+        gltf-model="https://cdn.aframe.io/test-models/models/glTF/RobotExpressive/RobotExpressive.gltf" 
+        position="-2 0 -6" 
+        scale="0.5 0.5 0.5">
+      </a-entity>
 
-      <!-- Meja dari model -->
-      <a-entity gltf-model="models/Desk.glb" position="-3 0 -4" scale="0.3 0.3 0.3"></a-entity>
-      <a-entity gltf-model="models/Desk.glb" position="3 0 -4" scale="0.3 0.3 0.3"></a-entity>
+      <a-entity 
+        gltf-model="https://cdn.aframe.io/test-models/models/glTF/Flamingo.glb" 
+        position="0 0 -6" 
+        scale="0.02 0.02 0.02"
+        class="clickable"
+        event-set__enter="_event: click; _target: #flamingo; animation__click: property: position; to: 0 2 -6; dur: 1000;">
+        <a-animation begin="click" attribute="rotation" to="0 360 0" dur="2000" easing="ease-in-out"></a-animation>
+      </a-entity>
 
-      <!-- Speaker di atas meja -->
-      <a-entity gltf-model="models/Desk speakers.glb" position="-3 1 -4" scale="0.3 0.3 0.3"></a-entity>
-      <a-entity gltf-model="models/Desk speakers.glb" position="3 1 -4" scale="0.3 0.3 0.3"></a-entity>
+      <a-entity 
+        gltf-model="https://cdn.aframe.io/test-models/models/glTF/Avocado/Avocado.gltf" 
+        position="2 0 -6" 
+        scale="5 5 5">
+      </a-entity>
 
-      <!-- Globe -->
-      <a-entity gltf-model="models/Globe.glb" position="-2 1 -3" scale="0.2 0.2 0.2"></a-entity>
+      <a-entity 
+        gltf-model="https://cdn.aframe.io/test-models/models/glTF/BrainStem/BrainStem.gltf" 
+        position="4 0 -6" 
+        scale="1.5 1.5 1.5">
+      </a-entity>
 
-      <!-- Kucing -->
-      <a-entity gltf-model="models/Kitten.glb" position="0 0 -2" scale="0.2 0.2 0.2"></a-entity>
-
-      <!-- Papan pengumuman -->
-      <a-entity gltf-model="models/Message board.glb" position="0 1.5 -9.8" scale="0.4 0.4 0.4"></a-entity>
-
-      <!-- Cahaya -->
-      <a-light type="ambient" color="#BBB"></a-light>
+      <!-- Audio -->
+      <a-sound 
+        src="https://cdn.glitch.global/f9d9bcb1-808d-4b17-8cb1-e5879d10690b/no-copyright-music-happy-306601.mp3?v=1683631787595" 
+        autoplay="true" 
+        loop="true" 
+        position="0 2 0">
+      </a-sound>
 
       <!-- Kamera -->
       <a-entity camera look-controls wasd-controls position="0 1.6 5"></a-entity>
 
-      <!-- Musik -->
-      <a-sound src="audio/no-copyright-music-happy-306601.mp3" autoplay="true" loop="true" position="0 2 0"></a-sound>
+      <!-- Cahaya -->
+      <a-light type="ambient" color="#FFF"></a-light>
     </a-scene>
   </body>
 </html>
