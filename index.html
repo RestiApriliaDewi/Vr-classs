@@ -1,73 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <title>VR Kelas</title>
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   </head>
   <body>
     <a-scene>
-      <!-- Assets: Model & Audio -->
-      <a-assets>
-        <a-asset-item id="speakerModel" src="models/Desk speakers.glb"></a-asset-item>
-        <a-asset-item id="model1" src="models/model1.glb"></a-asset-item>
-        <a-asset-item id="model2" src="models/model2.glb"></a-asset-item>
-        <a-asset-item id="model3" src="models/model3.glb"></a-asset-item>
-        <a-asset-item id="model4" src="models/model4.glb"></a-asset-item>
-        <audio id="bgMusic" src="audio/music.mp3"></audio>
-      </a-assets>
-
       <!-- Lantai -->
-      <a-plane position="0 0 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
+      <a-plane position="0 0 0" rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
       
-      <!-- Dinding -->
-      <a-box position="0 2 -5" width="10" height="4" depth="0.1" color="#D3D3D3"></a-box>
-      <a-box position="5 2 0" width="0.1" height="4" depth="10" color="#D3D3D3"></a-box>
-      <a-box position="-5 2 0" width="0.1" height="4" depth="10" color="#D3D3D3"></a-box>
+      <!-- Dinding Belakang dan Samping -->
+      <a-box position="0 2 -10" width="20" height="4" depth="0.1" color="#D3D3D3"></a-box>
+      <a-box position="10 2 0" width="0.1" height="4" depth="20" color="#D3D3D3"></a-box>
+      <a-box position="-10 2 0" width="0.1" height="4" depth="20" color="#D3D3D3"></a-box>
 
-      <!-- Meja -->
-      <a-box position="-2 0.5 -2" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
-      <a-box position="2 0.5 -2" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
-      <a-box position="-2 0.5 -4" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
-      <a-box position="2 0.5 -4" width="2" height="0.1" depth="1" color="#8B4513"></a-box>
+      <!-- Meja dari model -->
+      <a-entity gltf-model="models/Desk.glb" position="-3 0 -4" scale="1 1 1"></a-entity>
+      <a-entity gltf-model="models/Desk.glb" position="3 0 -4" scale="1 1 1"></a-entity>
 
-      <!-- Kursi -->
-      <!-- (biarkan tetap seperti aslinya, kursi dari box) -->
+      <!-- Speaker di atas meja -->
+      <a-entity gltf-model="models/Desk speakers.glb" position="-3 1 -4" scale="0.8 0.8 0.8"></a-entity>
+      <a-entity gltf-model="models/Desk speakers.glb" position="3 1 -4" scale="0.8 0.8 0.8"></a-entity>
 
-      <!-- Papan Tulis -->
-      <a-box position="0 2 -4.8" width="3" height="1.5" depth="0.1" color="#000"></a-box>
+      <!-- Globe -->
+      <a-entity gltf-model="models/Globe.glb" position="-2 1 -3" scale="0.6 0.6 0.6"></a-entity>
 
-      <!-- Objek Kompleks -->
-      <a-entity gltf-model="#speakerModel" position="0 0 -2" scale="0.5 0.5 0.5"></a-entity>
-      <a-entity gltf-model="#model1" position="3 0 -2" scale="0.4 0.4 0.4"></a-entity>
-      <a-entity gltf-model="#model2" position="-3 0 -2" scale="0.4 0.4 0.4"></a-entity>
-      <a-entity gltf-model="#model3" position="3 0 -4" scale="0.4 0.4 0.4"></a-entity>
-      <a-entity gltf-model="#model4" position="-3 0 -4" scale="0.4 0.4 0.4"></a-entity>
+      <!-- Kucing -->
+      <a-entity gltf-model="models/Kitten.glb" position="0 0 -2" scale="0.7 0.7 0.7"></a-entity>
 
-      <!-- Animasi Otomatis -->
-      <a-box position="0.5 0.5 -1" color="tomato">
-        <a-animation attribute="rotation" to="0 360 0" dur="4000" repeat="indefinite"></a-animation>
-      </a-box>
+      <!-- Papan pengumuman -->
+      <a-entity gltf-model="models/Message board.glb" position="0 1.5 -9.8" scale="1.2 1.2 1.2"></a-entity>
 
-      <!-- Animasi Interaktif (klik) -->
-      <a-box position="-0.5 0.5 -1" color="dodgerblue">
-        <a-animation begin="click" attribute="rotation" to="0 360 0" dur="1000"></a-animation>
-      </a-box>
-
-      <!-- Audio -->
-      <a-entity sound="src: #bgMusic; autoplay: true; loop: true; volume: 0.5"></a-entity>
-
-      <!-- Kamera & Cursor -->
-      <a-entity camera look-controls position="0 1.6 0">
-        <a-entity cursor="fuse: true; fuseTimeout: 500"
-                  position="0 0 -1"
-                  geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                  material="color: black; shader: flat">
-        </a-entity>
-      </a-entity>
+      <!-- Papan tulis (manual) -->
+      <a-box position="0 2 -9.5" width="5" height="2" depth="0.1" color="#000"></a-box>
 
       <!-- Cahaya -->
-      <a-light type="ambient" color="#BBB"></a-light>
+      <a-light type="ambient" color="#CCC"></a-light>
+      <a-light type="directional" intensity="0.5" position="1 3 1"></a-light>
+
+      <!-- Kamera -->
+      <a-entity camera look-controls wasd-controls position="0 1.6 5"></a-entity>
+
+      <!-- Musik -->
+      <a-sound src="audio/no-copyright-music-happy-306601.mp3" autoplay="true" loop="true" position="0 2 0"></a-sound>
     </a-scene>
   </body>
 </html>
